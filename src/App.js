@@ -16,14 +16,22 @@ class App extends Component {
         { id: 8, details: 'Iron clothes', completed: false },
         { id: 9, details: 'Go hiking', completed: true },
         { id: 10, details: 'Call up the doctor', completed: false },
-      ]
+      ],
+      limit: 5,
     }
   }
   render() {
-    const { tasks } = this.state;
+    const { tasks, limit } = this.state;
     return (
       <ul className="App">
-        {tasks.map((task, index) => <li>{task.details}</li>)}
+        {tasks.map((task, index) => {
+          if (task.id <= limit) {
+            return (<li>{task.details}</li>)
+          }
+
+        })
+
+        }
       </ul>
     );
   }
