@@ -48,7 +48,7 @@ class App extends Component {
     const { tasks, limit, text, onClickHandler } = this.state;
     return (
       <div>
-        <ul className="App">
+        <ul className="tasks">
 					{tasks.map((task, index) => 
 					  {
               if (task.id <= limit) {
@@ -57,7 +57,9 @@ class App extends Component {
             })
           }
         </ul>
-        <button onClick={this.onClickHandler}>{text}</button>
+				<div className="btnDiv">
+          <button className='btn' onClick={this.onClickHandler}>{text}</button>
+				</div>
       </div>
     );
   }
