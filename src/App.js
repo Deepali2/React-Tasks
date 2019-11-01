@@ -15,24 +15,50 @@ class App extends Component {
         { id: 7, details: 'Wash the car', completed: true },
         { id: 8, details: 'Iron clothes', completed: false },
         { id: 9, details: 'Go hiking', completed: true },
-        { id: 10, details: 'Call up the doctor', completed: false },
+				{ id: 10, details: 'Call up the doctor', completed: false },
+				{ id: 11, details: 'Call up home', completed: false },
+        { id: 12, details: 'Call up friends', completed: true },
+        { id: 13, details: 'Send Invitations', completed: false },
       ],
       limit: 5,
+      text: 'Show More',
     }
+    this.onClickHandler = this.onClickHandler.bind(this);
+  }
+  onClickHandler() {
+		const { tasks, limit, text } = this.state;
+    if (text === 'Show More' && tasks.length > limit) {
+			if (limit + 5 >= tasks.length) {
+        this.setState({limit: limit + 5, text: 'Show Less'});
+			} else {
+				this.setState({limit: limit + 5});
+			}
+		}
+		else if (limit >= 10) {
+			if (limit - 5 === 5) {
+        this.setState({limit: limit - 5, text: 'Show More'});
+			} else {
+				this.setState({limit: limit - 5});
+			}
+		}
+		else if (tasks.length < 5) alert('There are no more tasks to display');
+    
   }
   render() {
-    const { tasks, limit } = this.state;
+    const { tasks, limit, text, onClickHandler } = this.state;
     return (
-      <ul className="App">
-        {tasks.map((task, index) => {
-          if (task.id <= limit) {
-            return (<li>{task.details}</li>)
+      <div>
+        <ul className="App">
+					{tasks.map((task, index) => 
+					  {
+              if (task.id <= limit) {
+              return (<li>{task.details}</li>)
+              }
+            })
           }
-
-        })
-
-        }
-      </ul>
+        </ul>
+        <button onClick={this.onClickHandler}>{text}</button>
+      </div>
     );
   }
 }
