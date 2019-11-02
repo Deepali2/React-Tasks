@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CheckBox from './CheckBox';
 import './App.css';
 
 class App extends Component {
@@ -23,10 +24,26 @@ class App extends Component {
       limit: 5,
       text: 'Show More',
     }
-    this.onClickHandler = this.onClickHandler.bind(this);
-  }
+		this.onClickHandler = this.onClickHandler.bind(this);
+		this.toggleCompleted = this.toggleCompleted.bind(this);
+	}
+
+	toggleCompleted(id) {
+		return() => (			
+			this.setState((prevState) => {
+				console.log(id)
+				let tasks = prevState.tasks;
+				for (let task of tasks) {
+					if (task.id === id) task.completed = !task.completed;
+				}
+				return ({tasks});
+			})
+		)
+	}
+
   onClickHandler() {
 		const { tasks, limit, text } = this.state;
+		
     if (text === 'Show More' && tasks.length > limit) {
 			if (limit + 5 >= tasks.length) {
         this.setState({limit: limit + 5, text: 'Show Less'});
@@ -45,21 +62,30 @@ class App extends Component {
     
   }
   render() {
-    const { tasks, limit, text, onClickHandler } = this.state;
+		const { tasks, limit, text, onClickHandler } = this.state;
+
     return (
       <div>
+				<div className="btnDiv">
+          <button className='btn' onClick={this.onClickHandler}>{text}</button>
+				</div>
         <ul className="tasks">
-					{tasks.map((task, index) => 
+					{tasks.map(task => 
 					  {
               if (task.id <= limit) {
-              return (<li>{task.details}</li>)
+              return (
+							  <li key={task.id}>{task.details}
+									<CheckBox 
+										completed={task.completed}
+										toggleCompleted={this.toggleCompleted}
+										task={task}
+									/>
+								</li>)
               }
             })
           }
         </ul>
-				<div className="btnDiv">
-          <button className='btn' onClick={this.onClickHandler}>{text}</button>
-				</div>
+			
       </div>
     );
   }
