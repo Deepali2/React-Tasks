@@ -62,7 +62,7 @@ class App extends Component {
     
   }
   render() {
-		const { tasks, limit, text, onClickHandler } = this.state;
+		const { tasks, limit, text} = this.state;
 
     return (
       <div>
@@ -70,19 +70,16 @@ class App extends Component {
           <button className='btn' onClick={this.onClickHandler}>{text}</button>
 				</div>
         <ul className="tasks">
-					{tasks.map(task => 
-					  {
-              if (task.id <= limit) {
-              return (
-							  <li key={task.id}>{task.details}
+					{tasks.map(task => (
+								(task.id <= limit) && <li key={task.id}>
+								  {task.details}
 									<CheckBox 
 										completed={task.completed}
 										toggleCompleted={this.toggleCompleted}
 										task={task}
 									/>
 								</li>)
-              }
-            })
+            )
           }
         </ul>
 			
