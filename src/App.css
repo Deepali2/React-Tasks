@@ -41,7 +41,7 @@ ul {
 .completed {
 	opacity: 0.5;
 	text-decoration: line-through;
-	width: 102%;
+	width: 101%;
 }
 
 .task, .completed {
