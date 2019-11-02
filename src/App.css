@@ -8,11 +8,15 @@ h2 {
 	margin-bottom: 0;
 }
 
+ul {
+	padding-inline-start: 0;
+}
+
 .tasks {
 	list-style: none;
 	background-color: #E8E8EE;
 	margin: auto;
-	width: 30%;
+	width: 40%;
 }
 
 .btnDiv {
@@ -40,11 +44,22 @@ h2 {
 	justify-content: space-between;
 	margin-bottom: 10px;
 	height: 20px;
-	
 }
 
-@media screen and (max-width:'960px') {
+@media screen and (max-width:1028px) {
+	.tasks {
+		width: 60%;
+	}
+}
+
+@media screen and (max-width:960px) {
 	.tasks {
 		width: 70%;
+	}
+}
+
+@media screen and (max-width:414px) {
+	.tasks {
+		width: 95%;
 	}
 }
