@@ -1,11 +1,13 @@
 import React from 'react';
+import './CheckBox.css';
 
 const CheckBox = ({ task, completed, toggleCompleted }) => {
 	return (
 		<button
 			onClick={toggleCompleted(task.id)}
+			className={completed ? 'btnCompleted' : ''}
 		>
-			{completed ? 'done' : ''}
+			{completed ? <i className="far fa-check-square"></i> : ''}
 		</button>
 	)
 
