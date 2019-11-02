@@ -1,10 +1,23 @@
-.tasks {
+body {
+	font-family: 'Raleway', sans-serif;
+}
+
+h2 {
+	color: #A9A9A9;
 	text-align: center;
+	margin-bottom: 0;
+}
+
+.tasks {
 	list-style: none;
+	background-color: #E8E8EE;
+	margin: auto;
+	width: 30%;
 }
 
 .btnDiv {
 	text-align: center;
+	font-family: 'Raleway', sans-serif;
 }
 
 .btn {
@@ -12,9 +25,26 @@
 	margin-left: 10px;
 	margin-top: 20px;
 	border-radius: 5px;
-	background-color: #D0D3D4;
+	background-color: #E8E8EE;
 }
 
+
 .completed {
+	opacity: 0.5;
 	text-decoration: line-through;
+	width: 102%;
+}
+
+.task, .completed {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	height: 20px;
+	
+}
+
+@media screen and (max-width:'960px') {
+	.tasks {
+		width: 70%;
+	}
 }

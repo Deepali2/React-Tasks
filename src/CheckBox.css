@@ -1,9 +1,17 @@
 i {
 	font-size: 20px;
-	color: green;
+	color: #A9A9A9;
+}
+
+.btnNotCompleted {
+	border: solid 1px #A9A9A9;
+	background-color: none;
 }
 
 .btnCompleted {
 	border: none;
+}
+
+.btnNotCompleted, .btnCompleted {
 	outline: none;
 }

@@ -64,26 +64,29 @@ class App extends Component {
 		const { tasks, limit, text } = this.state;
 
 		return (
-			<div>
+			<div className='container'>
+				<h2>tasks</h2>
 				<div className="btnDiv">
 					<button className='btn' onClick={this.onClickHandler}>{text}</button>
 				</div>
-				<ul className="tasks">
-					{tasks.map(task => (
-						(task.id <= limit) &&
-						<li key={task.id}
-							className={task.completed ? 'completed' : ''}
-						>
-							{task.details}
-							<CheckBox
-								completed={task.completed}
-								toggleCompleted={this.toggleCompleted}
-								task={task}
-							/>
-						</li>)
-					)
-					}
-				</ul>
+				<div className="tasks">
+					<ul>
+						{tasks.map(task => (
+							(task.id <= limit) &&
+							<li key={task.id}
+								className={task.completed ? 'completed' : 'task'}
+							>
+								{task.details}
+								<CheckBox
+									completed={task.completed}
+									toggleCompleted={this.toggleCompleted}
+									task={task}
+								/>
+							</li>)
+						)
+						}
+					</ul>
+				</div>
 
 			</div>
 		);
