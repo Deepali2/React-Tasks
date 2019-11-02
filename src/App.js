@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CheckBox from './CheckBox';
+import Task from './Task';
 import './App.css';
 
 class App extends Component {
@@ -26,6 +27,25 @@ class App extends Component {
 		}
 		this.onClickHandler = this.onClickHandler.bind(this);
 		this.toggleCompleted = this.toggleCompleted.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
+	}
+
+	handleKeyPress(e) {
+		let details = e.target.value;
+		if (e.key === 'Enter') {
+			this.setState((prevState) => {
+				let tasks = prevState.tasks;
+
+				//add 1 to the id of each existing task
+				for (let task of tasks) {
+					task.id++;
+				}
+
+				let task = { id: 1, details, completed: false };
+				tasks.unshift(task);
+				return ({ tasks });
+			})
+		}
 	}
 
 	toggleCompleted(id) {
@@ -60,6 +80,7 @@ class App extends Component {
 		else if (tasks.length < 5) alert('There are no more tasks to display');
 
 	}
+
 	render() {
 		const { tasks, limit, text } = this.state;
 
@@ -68,6 +89,7 @@ class App extends Component {
 				<h2>tasks</h2>
 				<div className="btnDiv">
 					<button className='btn' onClick={this.onClickHandler}>{text}</button>
+					<Task handleKeyPress={this.handleKeyPress} />
 				</div>
 				<div className="tasks">
 					<ul>
