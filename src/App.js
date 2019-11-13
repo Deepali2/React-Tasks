@@ -23,12 +23,19 @@ class App extends Component {
 				{ id: 13, details: 'Send Invitations', completed: false },
 			],
 			limit: 5,
-			text: 'Show More',
+      text: 'Show More',
+      addTaskText:''
 		}
 		this.onClickHandler = this.onClickHandler.bind(this);
 		this.toggleCompleted = this.toggleCompleted.bind(this);
-		this.handleKeyPress = this.handleKeyPress.bind(this);
-	}
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange(e) {
+    let text = e.target.value;
+    this.setState({ addTaskText:text });
+  }
 
 	handleKeyPress(e) {
 		let details = e.target.value;
@@ -42,8 +49,8 @@ class App extends Component {
 				}
 
 				let task = { id: 1, details, completed: false };
-				tasks.unshift(task);
-				return ({ tasks });
+        tasks.unshift(task);
+				return ({ tasks, addTaskText: '' });
 			})
 		}
 	}
@@ -89,7 +96,7 @@ class App extends Component {
 				<h2>tasks</h2>
 				<div className="btnDiv">
 					<button className='btn' onClick={this.onClickHandler}>{text}</button>
-					<Task handleKeyPress={this.handleKeyPress} />
+					<Task handleKeyPress={this.handleKeyPress} addTaskText={this.state.addTaskText} handleChange={this.handleChange}/>
 				</div>
 				<div className="tasks">
 					<ul>
